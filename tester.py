@@ -1,7 +1,7 @@
 from buldRenamer import *
 
 path = "C:\\Users\\cathr\\OneDrive\\42\\0. Projects\\python_BuldRenamer\\PythonFileRenamer\\TestDocuments"
-testName = "myNewName" + str(counter)
+testName = "myNewName"
 def create_new_file(path, file):
     with open(os.path.join(path, file), 'w') as fp: 
         pass
