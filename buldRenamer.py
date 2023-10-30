@@ -1,7 +1,8 @@
 
 import os
+import re
 
-def file_renamer(directory, newName, fileExtension = None):
+def file_renamer(directory, newName, re_pattern = None):
 
     files = os.listdir(directory)
     global counter
@@ -9,7 +10,8 @@ def file_renamer(directory, newName, fileExtension = None):
 
 
     for file in files:
-        if fileExtension == None:
+        if re_pattern == None:
+            print("renaming ALL files")
             try:
                 fileType = file.split('.')[-1] 
                 os.rename(directory + '/' + file, directory + '/' + newName + str(counter) + '.' + fileType)
@@ -18,9 +20,10 @@ def file_renamer(directory, newName, fileExtension = None):
             except: 
                 print("Couldn't rename file")
         else: 
+            print("renaming SOME files")
 
             try:
-                if file.endswith(fileExtension):
+                if re.match(re_pattern, file):
                     fileType = file.split('.')[-1] 
                     os.rename(directory + '/' + file, directory + '/' + newName + str(counter) + '.' + fileType)
                     print("Renaming " + file + " to " + newName + str(counter) + "." + fileType)
